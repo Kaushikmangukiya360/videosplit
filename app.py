@@ -6,7 +6,7 @@ from datetime import datetime
 import streamlit as st
 
 # --- CONFIG ---
-MAX_FILE_SIZE_MB = 100
+MAX_FILE_SIZE_MB = 2024
 UPLOAD_DIR = "uploads"
 OUTPUT_DIR = "outputs"
 LOG_DIR = "logs"
