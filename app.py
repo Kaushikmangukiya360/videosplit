@@ -6,13 +6,14 @@ from datetime import datetime
 import streamlit as st
 
 # --- CONFIG ---
-MAX_FILE_SIZE_MB = 2024
+MAX_FILE_SIZE_MB = 2048 
 UPLOAD_DIR = "uploads"
 OUTPUT_DIR = "outputs"
 LOG_DIR = "logs"
 HISTORY_FILE = os.path.join(LOG_DIR, "history.csv")
 ZIP_NAME = "split_clips.zip"
-PASSWORD = "nexvision" 
+PASSWORD = "nexvision"
+LOGO_PATH = "1.png" 
 
 # --- SETUP ---
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -20,6 +21,10 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 
 st.set_page_config(page_title="🔒 NexVision Video Splitter", layout="centered")
+
+# --- BRANDING / LOGO ---
+if os.path.exists(LOGO_PATH):
+    st.image(LOGO_PATH, width=120)
 st.title("🔒 NexVision Secure Video Splitter")
 st.caption("✨ Made by Kaushik Mangukiya")
 
@@ -38,11 +43,11 @@ if not st.session_state.authenticated:
     st.stop()
 
 # --- UPLOAD VIDEO ---
-uploaded_file = st.file_uploader("📤 Upload your video file (Max 100MB)", type=["mp4", "mkv", "mov"])
+uploaded_file = st.file_uploader("📤 Upload your video file (Max 2 GB)", type=["mp4", "mkv", "mov"])
 
 if uploaded_file:
     if uploaded_file.size > MAX_FILE_SIZE_MB * 1024 * 1024:
-        st.error("🚫 File too large. Please upload a file under 100MB.")
+        st.error(f"🚫 File too large. Please upload a file under {MAX_FILE_SIZE_MB} MB.")
     else:
         filename = uploaded_file.name
         input_path = os.path.join(UPLOAD_DIR, filename)
