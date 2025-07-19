@@ -1,0 +1,9 @@
+# Ignore all .log files
+*.log
+*.mkv
+
+# Ignore the 'temp' directory and its contents
+temp/
+venv/
+
+# Ignore a specific file
