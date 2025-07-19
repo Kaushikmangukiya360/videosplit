@@ -7,3 +7,7 @@ temp/
 venv/
 
 # Ignore a specific file
+uploads/
+outputs/
+__pycache__/
+
